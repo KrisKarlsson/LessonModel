@@ -7,12 +7,23 @@
 
 import Foundation
 
-
 class ContentModel: ObservableObject{
     
+    //List of modules
     @Published var modules = [Module]()
-    var styleData: Data?
     
+    //Current module
+    
+    @Published var currentModule:Module?
+    var currentModuleIndex = 0
+    
+    // Current Lesson
+    
+    @Published var currentLesson:Lesson?
+    var currentLessonIndex = 0
+    
+    
+    var styleData: Data?
     
     init() {
         
@@ -20,26 +31,22 @@ class ContentModel: ObservableObject{
         
     }
     
+    //MARK: DATA METHOD
+    
     func getLocalData() {
         
-        // get a url
-        
+        // Get a url to the json file
         let jsonUrl = Bundle.main.url(forResource: "data", withExtension: "json")
         
-        
-        // read the file into a data object
-        
         do {
-        
-        let jsonData = try Data(contentsOf: jsonUrl!)
-        let jsonDecoder = JSONDecoder()
-        
+            // Read the file into a data object
+            let jsonData = try Data(contentsOf: jsonUrl!)
             
-            // try to decode json into array of module
-        try modules = jsonDecoder.decode([Module].self, from: jsonData)
+            // Try to decode the json into an array of modules
+            let jsonDecoder = JSONDecoder()
+            let modules = try jsonDecoder.decode([Module].self, from: jsonData)
             
-         // assing parsed modules to an array of module
-            
+            // Assign parsed modules to modules property
             self.modules = modules
              
             
@@ -48,7 +55,7 @@ class ContentModel: ObservableObject{
         catch{
             // log error
             
-            print("couldn't parse local data")
+            print("couldn't parse local data!!!!")
             
         }
          //parse style data
@@ -71,4 +78,49 @@ class ContentModel: ObservableObject{
             
         }
     }
+    
+    //MARK: Module Navigation Method
+    
+    
+    func beginModule(_ moduleid:Int) {
+        
+        
+        // Find the index for the module id
+        
+        for index in 0..<modules.count {
+            
+            if modules[index].id == moduleid {
+                
+                currentModuleIndex = index
+                break
+            
+                
+            }
+        }
+        
+        // Set the current Module
+        
+        currentModule = modules[currentModuleIndex]
+         
+        
+    }
+    
+    func beginLesson(_ lessonIndex: Int) {
+        
+        // Check that lesson index is within the range of  module lesson
+        
+        if lessonIndex < currentModule!.content.lessons.count {
+            
+             currentLessonIndex = lessonIndex
+        }
+        else { currentLessonIndex = 0}
+        
+        
+        // Set current lesson
+        
+        currentLesson = currentModule!.content.lessons[currentLessonIndex]
+        
+        
+    }
+    
 }
