@@ -20,6 +20,9 @@
 		0162C12D27CC86A30017C1DE /* ContentViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0162C12C27CC86A30017C1DE /* ContentViewRow.swift */; };
 		0162C12F27CD92EB0017C1DE /* ContentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0162C12E27CD92EA0017C1DE /* ContentDetailView.swift */; };
 		0162C13327CD9CFE0017C1DE /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0162C13227CD9CFD0017C1DE /* AVKit.framework */; };
+		0162C13527CDA1A10017C1DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0162C13427CDA1A00017C1DE /* Constants.swift */; };
+		0162C15327CDD1740017C1DE /* CodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0162C15227CDD1740017C1DE /* CodeTextView.swift */; };
+		0162C17127CF17AC0017C1DE /* RectangleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0162C17027CF17AC0017C1DE /* RectangleCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		0162C12E27CD92EA0017C1DE /* ContentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailView.swift; sourceTree = "<group>"; };
 		0162C13027CD99230017C1DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0162C13227CD9CFD0017C1DE /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		0162C13427CDA1A00017C1DE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0162C15227CDD1740017C1DE /* CodeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextView.swift; sourceTree = "<group>"; };
+		0162C17027CF17AC0017C1DE /* RectangleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,8 @@
 				0162C12A27CC6E920017C1DE /* ContentView.swift */,
 				0162C12C27CC86A30017C1DE /* ContentViewRow.swift */,
 				0162C12E27CD92EA0017C1DE /* ContentDetailView.swift */,
+				0162C15227CDD1740017C1DE /* CodeTextView.swift */,
+				0162C17027CF17AC0017C1DE /* RectangleCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -125,6 +133,7 @@
 			children = (
 				0162C12327C887780017C1DE /* data.json */,
 				0162C12227C887770017C1DE /* style.html */,
+				0162C13427CDA1A00017C1DE /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -223,8 +232,11 @@
 				0162C12F27CD92EB0017C1DE /* ContentDetailView.swift in Sources */,
 				0162C10E27C882CF0017C1DE /* LearningApp.swift in Sources */,
 				0162C12D27CC86A30017C1DE /* ContentViewRow.swift in Sources */,
+				0162C15327CDD1740017C1DE /* CodeTextView.swift in Sources */,
 				0162C12127C883F60017C1DE /* ContentModel.swift in Sources */,
 				0162C12727C889950017C1DE /* Models.swift in Sources */,
+				0162C17127CF17AC0017C1DE /* RectangleCard.swift in Sources */,
+				0162C13527CDA1A10017C1DE /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 class ContentModel: ObservableObject{
     
@@ -21,6 +22,16 @@ class ContentModel: ObservableObject{
     
     @Published var currentLesson:Lesson?
     var currentLessonIndex = 0
+    
+    //Creat content expliantion
+    
+    @Published var lessonDescription = NSAttributedString()
+    
+    // Current selected content and text
+    
+    @Published var currentConentedSelected:Int?
+      
+    
     
     
     var styleData: Data?
@@ -119,8 +130,74 @@ class ContentModel: ObservableObject{
         // Set current lesson
         
         currentLesson = currentModule!.content.lessons[currentLessonIndex]
+        lessonDescription = addStyling(currentLesson!.explanation)
         
         
     }
     
+        func nextLesson() {
+            
+            // Advance the lesson index
+            
+            currentLessonIndex += 1
+            
+            // check in range
+            
+            if currentLessonIndex < currentModule!.content.lessons.count {
+                
+                currentLesson = currentModule?.content.lessons[currentLessonIndex]
+                lessonDescription = addStyling(currentLesson!.explanation)
+                
+        
+            } else {
+                
+                currentLessonIndex = 0
+                currentLesson = nil
+                
+            }
+        
+             
+        
+    }
+    
+    func hasNextLesson ()-> Bool {
+        
+      return (currentLessonIndex + 1 < currentModule!.content.lessons.count)
+        
+    }
+
+// MARK: Code Styling
+
+private func addStyling (_ htmlString: String) -> NSAttributedString {
+    
+    
+    
+    var resultString = NSAttributedString()
+    var data = Data()
+    
+    // add styling data
+    
+    if styleData != nil {
+    data.append(styleData!)
+        
+    }
+
+    // add html data
+    
+    data.append(Data(htmlString.utf8))
+    
+    // convert to attributed string
+    
+        if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+            
+            resultString = attributedString
+    }
+    
+    return resultString
+
 }
+}
+
+
+
+
