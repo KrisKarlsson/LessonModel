@@ -27,7 +27,7 @@ struct CodeTextView: UIViewRepresentable {
          
         // set the attributed text for lesson
         
-        textView.attributedText = model.lessonDescription
+        textView.attributedText = model.codeText
         
         
         

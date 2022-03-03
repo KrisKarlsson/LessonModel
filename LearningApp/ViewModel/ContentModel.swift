@@ -23,14 +23,21 @@ class ContentModel: ObservableObject{
     @Published var currentLesson:Lesson?
     var currentLessonIndex = 0
     
+    // Current Question
+    
+    @Published var currentQuestion:Question?
+    var currentQuestionIndex = 0
+    
+    
     //Creat content expliantion
     
-    @Published var lessonDescription = NSAttributedString()
+    @Published var codeText = NSAttributedString()
     
     // Current selected content and text
     
     @Published var currentConentedSelected:Int?
-      
+    @Published var currentTestSelected:Int?
+    
     
     
     
@@ -130,7 +137,7 @@ class ContentModel: ObservableObject{
         // Set current lesson
         
         currentLesson = currentModule!.content.lessons[currentLessonIndex]
-        lessonDescription = addStyling(currentLesson!.explanation)
+        codeText = addStyling(currentLesson!.explanation)
         
         
     }
@@ -146,7 +153,7 @@ class ContentModel: ObservableObject{
             if currentLessonIndex < currentModule!.content.lessons.count {
                 
                 currentLesson = currentModule?.content.lessons[currentLessonIndex]
-                lessonDescription = addStyling(currentLesson!.explanation)
+                codeText = addStyling(currentLesson!.explanation)
                 
         
             } else {
@@ -165,6 +172,30 @@ class ContentModel: ObservableObject{
       return (currentLessonIndex + 1 < currentModule!.content.lessons.count)
         
     }
+    
+    
+    func beginTest(_ moduleId:Int) {
+        
+        // set the current module
+        beginModule(moduleId)
+        
+        // set the current question
+        currentQuestionIndex = 0
+        
+        // If there are questions set the current question to the first 1
+        
+        if currentModule?.test.questions.count ?? 0 > 0  {
+            
+            
+            currentQuestion = currentModule!.test.questions[currentQuestionIndex]
+            codeText = addStyling(currentQuestion!.content)
+            
+
+            
+        }
+        
+    }
+    
 
 // MARK: Code Styling
 
