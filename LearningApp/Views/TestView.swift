@@ -118,17 +118,36 @@ struct TestView: View {
                 
                 Button {
                     
-                    // Change submitted state to true
+                    //Check if answer has been submitted
                     
-                    submitted = true
-                    
-                    // Check if the answer is correct
-                    
-                    if selectedAnswerIndex == model.currentQuestion!.correctIndex {
+                    if submitted == true {
                         
-                        numCorrect += 1
+                        //Answer has already been submitted move to next question
+                        model.nextQuestion()
+                        
+                        //Reset properties
+                        
+                        submitted = false
+                        selectedAnswerIndex = nil
+                    
+                        
+                    }
+                    else {
+                        
+                        // submitt the answer
+                        
+                        // Change submitted state to true
+                        submitted = true
+                     
+                        // Check if the answer is correct
+                        if selectedAnswerIndex == model.currentQuestion!.correctIndex {
+                            
+                            numCorrect += 1
+                        }
+                        
                     }
                     
+               
                 } label: {
                 
                 ZStack {
@@ -137,7 +156,7 @@ struct TestView: View {
                         .frame(height: 48)
                     
                 
-                    Text("Submit")
+                    Text(buttonText)
                         .bold()
                         .padding()
                         .foregroundColor(Color.white)
@@ -157,6 +176,29 @@ struct TestView: View {
             ProgressView()
         }
 
+    }
+    
+    var buttonText: String {
+        
+        // check if answer has been submitted
+         
+        if submitted == true {
+            
+            if model.currentQuestionIndex+1 == model.currentModule!.test.questions.count {
+                return "finish"
+            }
+                 
+            
+            return "Next"// or finish
+        }
+         
+        else {
+            
+            return "submit"
+            
+        }
+            
+        
     }
 }
 
